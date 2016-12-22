@@ -17,6 +17,7 @@ namespace practiceCalculator
     public partial class Form1 : Form
     {
         private double[] stack = new double[10];    // infix stack 연산용 저장공간 생각중
+        System.Windows.Forms.RichTextBox textbox_current;   // 맨 위의 stack
 
         public Form1()
         {
@@ -26,14 +27,14 @@ namespace practiceCalculator
         // 장수진
         // 2016/12/22
         // 숫자는 숫자끼리 연산자는 연산자끼리 묶어 처리하고자 합니다.
-        private void number_Click(object sender, EventArgs e)
+        private void ClickNum(object sender, EventArgs e)
         {
             Button b = (Button)sender;
             if (textbox_process.Text == "0") textbox_process.Clear();            
             textbox_process.Text += b.Text;
         }
 
-        private void operator_Click(object sender, EventArgs e)
+        private void ClickOp(object sender, EventArgs e)
         {
 
         }
@@ -123,16 +124,16 @@ namespace practiceCalculator
         //{
         //    textbox_process.Text += ".";
         //}
-        
+
         //private void number_0_Click(object sender, EventArgs e)
         //{
         //    textbox_process.Text += "0";
         //}
 
-        // 장수진
+        //장수진
         // 2016/12/22
-        // 키가 입력되면 키버튼에 대응하는 클릭 이벤트가 실행됩니다.
-        private void Form1_KeyPress(object sender, KeyPressEventArgs e)
+        //키가 입력되면 키버튼에 대응하는 클릭 이벤트가 실행됩니다.
+        private void PressKey(object sender, KeyPressEventArgs e)
         {
             if (/*e.KeyChar == (char)Keys.Return||*/e.KeyChar.ToString()=="=")
             {
@@ -201,29 +202,29 @@ namespace practiceCalculator
 
     public class function
     {
-        public double add(double a, double b)
+        public double Add(double a, double b)
         {
             return a + b;
         }
-        public double sub(double a, double b)
+        public double Sub(double a, double b)
         {
             return a - b;
         }
-        public double mul(double a, double b)
+        public double Mul(double a, double b)
         {
             return a * b;
         }
-        public double div(double a, double b)
+        public double Div(double a, double b)
         {
             return a / b;
         }
-        public double mod(double a, double b)
+        public double Mod(double a, double b)
         {
             return a % b;
         }
-        public double rec(double a)
+        public double Rec(double x)
         {
-            return 1/a;
+            return 1/x;
         }
     }
 }
