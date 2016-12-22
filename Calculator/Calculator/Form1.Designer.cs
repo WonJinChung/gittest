@@ -202,7 +202,7 @@
             this.button_rev.TabIndex = 13;
             this.button_rev.Text = "1/x";
             this.button_rev.UseVisualStyleBackColor = true;
-            this.button_rev.Click += new System.EventHandler(this.ClickOp);
+            this.button_rev.Click += new System.EventHandler(this.ClickReciprocal);
             // 
             // button_equ
             // 
