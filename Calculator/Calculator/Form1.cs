@@ -16,108 +16,125 @@ namespace practiceCalculator
 {
     public partial class Form1 : Form
     {
+        private double[] stack = new double[10];    // infix stack 연산용 저장공간 생각중
+
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void number_1_Click(object sender, EventArgs e)
+        // 장수진
+        // 2016/12/22
+        // 숫자는 숫자끼리 연산자는 연산자끼리 묶어 처리하고자 합니다.
+        private void number_Click(object sender, EventArgs e)
         {
-            textbox_process.Text += "1";
+            Button b = (Button)sender;
+            if (textbox_process.Text == "0") textbox_process.Clear();            
+            textbox_process.Text += b.Text;
         }
 
-        private void number_2_Click(object sender, EventArgs e)
+        private void operator_Click(object sender, EventArgs e)
         {
-            textbox_process.Text += "2";
+
         }
 
-        private void number_3_Click(object sender, EventArgs e)
-        {
-            textbox_process.Text += "3";
-        }
+        //private void number_1_Click(object sender, EventArgs e)
+        //{
+        //    textbox_process.Text += "1";
+        //}
 
-        private void number_4_Click(object sender, EventArgs e)
-        {
-            textbox_process.Text += "4";
-        }
+        //private void number_2_Click(object sender, EventArgs e)
+        //{
+        //    textbox_process.Text += "2";
+        //}
 
-        private void number_5_Click(object sender, EventArgs e)
-        {
-            textbox_process.Text += "5";
-        }
+        //private void number_3_Click(object sender, EventArgs e)
+        //{
+        //    textbox_process.Text += "3";
+        //}
 
-        private void number_6_Click(object sender, EventArgs e)
-        {
-            textbox_process.Text += "6";
-        }
+        //private void number_4_Click(object sender, EventArgs e)
+        //{
+        //    textbox_process.Text += "4";
+        //}
 
-        private void number_7_Click(object sender, EventArgs e)
-        {
-            textbox_process.Text += "7";
-        }
+        //private void number_5_Click(object sender, EventArgs e)
+        //{
+        //    textbox_process.Text += "5";
+        //}
 
-        private void number_8_Click(object sender, EventArgs e)
-        {
-            textbox_process.Text += "8";
-        }
+        //private void number_6_Click(object sender, EventArgs e)
+        //{
+        //    textbox_process.Text += "6";
+        //}
 
-        private void number_9_Click(object sender, EventArgs e)
-        {
-            textbox_process.Text += "9";
-        }
+        //private void number_7_Click(object sender, EventArgs e)
+        //{
+        //    textbox_process.Text += "7";
+        //}
 
-        private void button_sub_Click(object sender, EventArgs e)
-        {
-            textbox_process.Text += "-";
-        }
+        //private void number_8_Click(object sender, EventArgs e)
+        //{
+        //    textbox_process.Text += "8";
+        //}
 
-        private void button_mul_Click(object sender, EventArgs e)
-        {
-            textbox_process.Text += "*";
-        }
+        //private void number_9_Click(object sender, EventArgs e)
+        //{
+        //    textbox_process.Text += "9";
+        //}
 
-        private void button_div_Click(object sender, EventArgs e)
-        {
-            textbox_process.Text += "/";
-        }
+        //private void button_sub_Click(object sender, EventArgs e)
+        //{
+        //    textbox_process.Text += "-";
+        //}
 
-        private void button_mod_Click(object sender, EventArgs e)
-        {
-            textbox_process.Text += "%";
-        }
+        //private void button_mul_Click(object sender, EventArgs e)
+        //{
+        //    textbox_process.Text += "*";
+        //}
 
-        private void button_rev_Click(object sender, EventArgs e)
-        {
-            // 임시. 수정필요
-            textbox_process.Text = "1/(" + textbox_process.Text + ")";
-        }
+        //private void button_div_Click(object sender, EventArgs e)
+        //{
+        //    textbox_process.Text += "/";
+        //}
 
-        private void button_equ_Click(object sender, EventArgs e)
-        {
-            textbox_process.Text += "0";
-        }
+        //private void button_mod_Click(object sender, EventArgs e)
+        //{
+        //    textbox_process.Text += "%";
+        //}
 
-        private void button_add_Click(object sender, EventArgs e)
-        {
-            textbox_process.Text += "+";
-        }
+        //private void button_rev_Click(object sender, EventArgs e)
+        //{
+        //    // 임시. 수정필요
+        //    textbox_process.Text = "1/(" + textbox_process.Text + ")";
+        //}
 
-        private void button_point_Click(object sender, EventArgs e)
-        {
-            textbox_process.Text += ".";
-        }
+        //private void button_equ_Click(object sender, EventArgs e)
+        //{
+        //    textbox_process.Text += "0";
+        //}
+
+        //private void button_add_Click(object sender, EventArgs e)
+        //{
+        //    textbox_process.Text += "+";
+        //}
+
+        //private void button_point_Click(object sender, EventArgs e)
+        //{
+        //    textbox_process.Text += ".";
+        //}
         
-        private void number_0_Click(object sender, EventArgs e)
-        {
-            textbox_process.Text += "0";
-        }
+        //private void number_0_Click(object sender, EventArgs e)
+        //{
+        //    textbox_process.Text += "0";
+        //}
 
         // 장수진
         // 2016/12/22
         // 키가 입력되면 키버튼에 대응하는 클릭 이벤트가 실행됩니다.
         private void Form1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == (char)Keys.Return||e.KeyChar.ToString()=="=")
+            if (/*e.KeyChar == (char)Keys.Return||*/e.KeyChar.ToString()=="=")
             {
                 button_equ.PerformClick();
             }
@@ -184,6 +201,29 @@ namespace practiceCalculator
 
     public class function
     {
-      
+        public double add(double a, double b)
+        {
+            return a + b;
+        }
+        public double sub(double a, double b)
+        {
+            return a - b;
+        }
+        public double mul(double a, double b)
+        {
+            return a * b;
+        }
+        public double div(double a, double b)
+        {
+            return a / b;
+        }
+        public double mod(double a, double b)
+        {
+            return a % b;
+        }
+        public double rec(double a)
+        {
+            return 1/a;
+        }
     }
 }
