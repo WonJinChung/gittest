@@ -31,7 +31,7 @@ namespace practiceCalculator
 
         // 장수진
         // 2016/12/22
-        // 숫자는 숫자끼리 연산자는 연산자끼리 묶어 처리하고자 합니다.
+        // 숫자는 숫자끼리 연산자는 연산자끼리 묶어 처리하고자 합니다. (연산에 숫자를 두 개 밖에 이용할 수 없는 부분 수정필요)
         private void ClickNum(object sender, EventArgs e)
         {
             Button b = (Button)sender;
@@ -52,6 +52,13 @@ namespace practiceCalculator
             b_op = true;
             b_equal = false;
             textbox_process.Text = value + " " + operation;
+        }
+
+        private void ClickReciprocal(object sender, EventArgs e)
+        {
+            textbox_process.Clear();
+            textbox_result.Text = function.Rec(Double.Parse(textbox_result.Text)).ToString();
+            b_equal = true;
         }
 
         private void ClickEqual(object sender, EventArgs e)
@@ -77,97 +84,6 @@ namespace practiceCalculator
             }
             b_equal = true;
         }
-
-        //private void number_1_Click(object sender, EventArgs e)
-        //{
-        //    textbox_process.Text += "1";
-        //}
-
-        //private void number_2_Click(object sender, EventArgs e)
-        //{
-        //    textbox_process.Text += "2";
-        //}
-
-        //private void number_3_Click(object sender, EventArgs e)
-        //{
-        //    textbox_process.Text += "3";
-        //}
-
-        //private void number_4_Click(object sender, EventArgs e)
-        //{
-        //    textbox_process.Text += "4";
-        //}
-
-        //private void number_5_Click(object sender, EventArgs e)
-        //{
-        //    textbox_process.Text += "5";
-        //}
-
-        //private void number_6_Click(object sender, EventArgs e)
-        //{
-        //    textbox_process.Text += "6";
-        //}
-
-        //private void number_7_Click(object sender, EventArgs e)
-        //{
-        //    textbox_process.Text += "7";
-        //}
-
-        //private void number_8_Click(object sender, EventArgs e)
-        //{
-        //    textbox_process.Text += "8";
-        //}
-
-        //private void number_9_Click(object sender, EventArgs e)
-        //{
-        //    textbox_process.Text += "9";
-        //}
-
-        //private void button_sub_Click(object sender, EventArgs e)
-        //{
-        //    textbox_process.Text += "-";
-        //}
-
-        //private void button_mul_Click(object sender, EventArgs e)
-        //{
-        //    textbox_process.Text += "*";
-        //}
-
-        //private void button_div_Click(object sender, EventArgs e)
-        //{
-        //    textbox_process.Text += "/";
-        //}
-
-        //private void button_mod_Click(object sender, EventArgs e)
-        //{
-        //    textbox_process.Text += "%";
-        //}
-
-        //private void button_rev_Click(object sender, EventArgs e)
-        //{
-        //    // 임시. 수정필요
-        //    textbox_process.Text = "1/(" + textbox_process.Text + ")";
-        //}
-
-        //private void button_equ_Click(object sender, EventArgs e)
-        //{
-        //    textbox_process.Text += "0";
-        //}
-
-        //private void button_add_Click(object sender, EventArgs e)
-        //{
-        //    textbox_process.Text += "+";
-        //}
-
-        //private void button_point_Click(object sender, EventArgs e)
-        //{
-        //    textbox_process.Text += ".";
-        //}
-
-        //private void number_0_Click(object sender, EventArgs e)
-        //{
-        //    textbox_process.Text += "0";
-        //}
 
         //장수진
         // 2016/12/22
