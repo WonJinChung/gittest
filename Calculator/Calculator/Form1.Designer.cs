@@ -213,7 +213,7 @@
             this.button_equ.TabIndex = 14;
             this.button_equ.Text = "=";
             this.button_equ.UseVisualStyleBackColor = true;
-            this.button_equ.Click += new System.EventHandler(this.ClickOp);
+            this.button_equ.Click += new System.EventHandler(this.ClickEqual);
             // 
             // number_0
             // 
