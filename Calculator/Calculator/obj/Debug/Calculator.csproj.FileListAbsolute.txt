@@ -1,8 +1,0 @@
-E:\자료\대학자료\졸업작품\git\gittest\Calculator\Calculator\bin\Debug\Calculator.exe.config
-E:\자료\대학자료\졸업작품\git\gittest\Calculator\Calculator\bin\Debug\Calculator.exe
-E:\자료\대학자료\졸업작품\git\gittest\Calculator\Calculator\bin\Debug\Calculator.pdb
-E:\자료\대학자료\졸업작품\git\gittest\Calculator\Calculator\obj\Debug\Calculator.csprojResolveAssemblyReference.cache
-E:\자료\대학자료\졸업작품\git\gittest\Calculator\Calculator\obj\Debug\Calculator.Properties.Resources.resources
-E:\자료\대학자료\졸업작품\git\gittest\Calculator\Calculator\obj\Debug\Calculator.csproj.GenerateResource.Cache
-E:\자료\대학자료\졸업작품\git\gittest\Calculator\Calculator\obj\Debug\Calculator.exe
-E:\자료\대학자료\졸업작품\git\gittest\Calculator\Calculator\obj\Debug\Calculator.pdb
