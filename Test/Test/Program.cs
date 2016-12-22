@@ -3,50 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
-namespace Test
-{
-    class Calculator
+namespace Test { 
+class Program
     {
-        static double Adder(double a, double b)
+    [STAThread]
+    static void Main(string[] args)
         {
-            return a + b;
-        }
-        static double Substrater(double a, double b)
-        {
-            return a - b;
-        }
-        static double Multiplier(double a, double b)
-        {
-            return a * b;
-        }
-        static double Divider(double a, double b)
-        {
-            return a / b;
-        }
-        static double Reciprocator(double a)
-        {
-            return Divider(1, a);
-        }
-        static double Modulus(double a, double b)
-        {
-            return a % b;
-        }
-        static double Interpreter(string test)
-        {
-            double Result = 0;
-            // 연산우선순위 stack infix?
-            return Result;
-        }
+        Application.EnableVisualStyles();
+        Application.SetCompatibleTextRenderingDefault(false);
+        Application.Run(new Form1());
     }
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            string test;
-            //test = "Hello World!";
-            test = Console.ReadLine();
-            Console.WriteLine(test);
-        }
     }
 }
