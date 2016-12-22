@@ -295,8 +295,10 @@
             this.Controls.Add(this.number_1);
             this.Controls.Add(this.number_4);
             this.Controls.Add(this.number_7);
+            this.KeyPreview = true;
             this.Name = "Form1";
             this.Text = "Form1";
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
             this.ResumeLayout(false);
 
         }
