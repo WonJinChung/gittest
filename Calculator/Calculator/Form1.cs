@@ -16,9 +16,14 @@ namespace practiceCalculator
 {
     public partial class Form1 : Form
     {
-        private double[] stack = new double[10];    // infix stack 연산용 저장공간 생각중
-        System.Windows.Forms.RichTextBox textbox_current;   // 맨 위의 stack
+        //private double[] stack = new double[10];    // infix stack 연산용 저장공간 생각중
+        //System.Windows.Forms.RichTextBox textbox_current;   // 맨 위의 stack
 
+        String operation = "";
+        bool b_op = false;
+        bool b_equal = false;
+        Double value;
+        
         public Form1()
         {
             InitializeComponent();
@@ -30,13 +35,47 @@ namespace practiceCalculator
         private void ClickNum(object sender, EventArgs e)
         {
             Button b = (Button)sender;
-            if (textbox_process.Text == "0") textbox_process.Clear();            
-            textbox_process.Text += b.Text;
+            if (textbox_result.Text == "0" || b_op || b_equal)
+            {
+                textbox_result.Clear();
+                b_op = false;
+                b_equal = false;
+            }
+            textbox_result.Text += b.Text;
         }
 
         private void ClickOp(object sender, EventArgs e)
         {
+            Button b = (Button)sender;
+            operation = b.Text;
+            value = Double.Parse(textbox_result.Text);
+            b_op = true;
+            b_equal = false;
+            textbox_process.Text = value + " " + operation;
+        }
 
+        private void ClickEqual(object sender, EventArgs e)
+        {
+            textbox_process.Clear();
+            switch (operation)
+            {
+                case "+":
+                    textbox_result.Text = function.Add(value, Double.Parse(textbox_result.Text)).ToString();
+                    break;
+                case "-":
+                    textbox_result.Text = function.Sub(value, Double.Parse(textbox_result.Text)).ToString();
+                    break;
+                case "*":
+                    textbox_result.Text = function.Mul(value, Double.Parse(textbox_result.Text)).ToString();
+                    break;
+                case "/":
+                    textbox_result.Text = function.Div(value , Double.Parse(textbox_result.Text)).ToString();
+                    break;
+                case "%":
+                    textbox_result.Text = function.Mod(value, Double.Parse(textbox_result.Text)).ToString();
+                    break;
+            }
+            b_equal = true;
         }
 
         //private void number_1_Click(object sender, EventArgs e)
@@ -135,7 +174,7 @@ namespace practiceCalculator
         //키가 입력되면 키버튼에 대응하는 클릭 이벤트가 실행됩니다.
         private void PressKey(object sender, KeyPressEventArgs e)
         {
-            if (/*e.KeyChar == (char)Keys.Return||*/e.KeyChar.ToString()=="=")
+            if (e.KeyChar == (char)Keys.Return||e.KeyChar.ToString()=="=")
             {
                 button_equ.PerformClick();
             }
@@ -200,29 +239,29 @@ namespace practiceCalculator
 
 
 
-    public class function
+    public static class function
     {
-        public double Add(double a, double b)
+        public static double Add(double a, double b)
         {
             return a + b;
         }
-        public double Sub(double a, double b)
+        public static double Sub(double a, double b)
         {
             return a - b;
         }
-        public double Mul(double a, double b)
+        public static double Mul(double a, double b)
         {
             return a * b;
         }
-        public double Div(double a, double b)
+        public static double Div(double a, double b)
         {
             return a / b;
         }
-        public double Mod(double a, double b)
+        public static double Mod(double a, double b)
         {
             return a % b;
         }
-        public double Rec(double x)
+        public static double Rec(double x)
         {
             return 1/x;
         }
