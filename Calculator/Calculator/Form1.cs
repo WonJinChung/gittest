@@ -87,6 +87,7 @@ namespace practiceCalculator
             textbox_process.Clear();
             textbox_result.Text = function.Rec(Double.Parse(textbox_result.Text)).ToString();
             b_equal = true;
+            b_cal_start = false;
         }
 
         private void ClickEqual(object sender, EventArgs e)
@@ -112,6 +113,7 @@ namespace practiceCalculator
             }
             textbox_result.Text = value.ToString();
             b_equal = true;
+            b_cal_start = false;
         }
 
         //장수진
