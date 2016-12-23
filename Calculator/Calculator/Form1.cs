@@ -16,10 +16,11 @@ namespace practiceCalculator
 {
     public partial class Form1 : Form
     {
-        //private double[] stack = new double[10];    // infix stack 연산용 저장공간 생각중
-        //System.Windows.Forms.RichTextBox textbox_current;   // 맨 위의 stack
+        // private double[] stack = new double[10];    // infix stack 연산용 저장공간 생각중
+        // System.Windows.Forms.RichTextBox textbox_current;   // 맨 위의 stack
+        String current = null;
 
-        String operation = "";
+        String operation = null;
         bool b_op = false;
         bool b_equal = false;
         Double value;
@@ -46,12 +47,35 @@ namespace practiceCalculator
 
         private void ClickOp(object sender, EventArgs e)
         {
+            if (operation != null)
+            {
+                switch (operation)
+                {
+                    case "+":
+                        current = function.Add(value, Double.Parse(textbox_result.Text)).ToString();
+                        break;
+                    case "-":
+                        current = function.Sub(value, Double.Parse(textbox_result.Text)).ToString();
+                        break;
+                    case "*":
+                        current = function.Mul(value, Double.Parse(textbox_result.Text)).ToString();
+                        break;
+                    case "/":
+                        current = function.Div(value, Double.Parse(textbox_result.Text)).ToString();
+                        break;
+                    case "%":
+                        current = function.Mod(value, Double.Parse(textbox_result.Text)).ToString();
+                        break;
+                }
+                operation = null;
+            }
             Button b = (Button)sender;
             operation = b.Text;
             value = Double.Parse(textbox_result.Text);
             b_op = true;
             b_equal = false;
-            textbox_process.Text = value + " " + operation;
+            textbox_process.Text += textbox_result.Text + " " + operation + " ";
+            if (current!=null) textbox_result.Text = current;
         }
 
         private void ClickReciprocal(object sender, EventArgs e)
