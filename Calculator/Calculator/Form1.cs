@@ -18,12 +18,12 @@ namespace practiceCalculator
     {
         // private double[] stack = new double[10];    // infix stack 연산용 저장공간 생각중
         // System.Windows.Forms.RichTextBox textbox_current;   // 맨 위의 stack
-        String current = null;
 
         String operation = null;
         bool b_op = false;
+        bool b_cal_start = false;
         bool b_equal = false;
-        Double value;
+        Double value = 0;
         
         public Form1()
         {
@@ -52,30 +52,34 @@ namespace practiceCalculator
                 switch (operation)
                 {
                     case "+":
-                        current = function.Add(value, Double.Parse(textbox_result.Text)).ToString();
+                        value = function.Add(value, Double.Parse(textbox_result.Text));
                         break;
                     case "-":
-                        current = function.Sub(value, Double.Parse(textbox_result.Text)).ToString();
+                        value = function.Sub(value, Double.Parse(textbox_result.Text));
                         break;
                     case "*":
-                        current = function.Mul(value, Double.Parse(textbox_result.Text)).ToString();
+                        value = function.Mul(value, Double.Parse(textbox_result.Text));
                         break;
                     case "/":
-                        current = function.Div(value, Double.Parse(textbox_result.Text)).ToString();
+                        value = function.Div(value, Double.Parse(textbox_result.Text));
                         break;
                     case "%":
-                        current = function.Mod(value, Double.Parse(textbox_result.Text)).ToString();
+                        value = function.Mod(value, Double.Parse(textbox_result.Text));
                         break;
                 }
                 operation = null;
             }
             Button b = (Button)sender;
             operation = b.Text;
-            value = Double.Parse(textbox_result.Text);
+            if (!b_cal_start)
+            {
+                value = Double.Parse(textbox_result.Text);
+                b_cal_start = true;
+            }
             b_op = true;
             b_equal = false;
             textbox_process.Text += textbox_result.Text + " " + operation + " ";
-            if (current!=null) textbox_result.Text = current;
+            textbox_result.Text = value.ToString();
         }
 
         private void ClickReciprocal(object sender, EventArgs e)
@@ -91,21 +95,22 @@ namespace practiceCalculator
             switch (operation)
             {
                 case "+":
-                    textbox_result.Text = function.Add(value, Double.Parse(textbox_result.Text)).ToString();
+                    value = function.Add(value, Double.Parse(textbox_result.Text));
                     break;
                 case "-":
-                    textbox_result.Text = function.Sub(value, Double.Parse(textbox_result.Text)).ToString();
+                    value = function.Sub(value, Double.Parse(textbox_result.Text));
                     break;
                 case "*":
-                    textbox_result.Text = function.Mul(value, Double.Parse(textbox_result.Text)).ToString();
+                    value = function.Mul(value, Double.Parse(textbox_result.Text));
                     break;
                 case "/":
-                    textbox_result.Text = function.Div(value , Double.Parse(textbox_result.Text)).ToString();
+                    value = function.Div(value, Double.Parse(textbox_result.Text));
                     break;
                 case "%":
-                    textbox_result.Text = function.Mod(value, Double.Parse(textbox_result.Text)).ToString();
+                    value = function.Mod(value, Double.Parse(textbox_result.Text));
                     break;
             }
+            textbox_result.Text = value.ToString();
             b_equal = true;
         }
 
