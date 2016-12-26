@@ -19,10 +19,9 @@ namespace practiceCalculator
         // private double[] stack = new double[10];    // infix stack 연산용 저장공간 생각중
         // System.Windows.Forms.RichTextBox textbox_current;   // 맨 위의 stack
 
-        String operation = null;
-        bool b_op = false;
-        bool b_cal_start = false;
-        bool b_equal = false;
+        String operation = null;    // 연산자 기호
+        bool b_op = false;  // 현재 식에 연산자가 하나라도 있는지 확인
+        bool b_equal = false;   // 마지막 연산이 =였는지 확인
         Double value = 0;
         
         public Form1()
@@ -37,8 +36,8 @@ namespace practiceCalculator
         {
             Button b = (Button)sender;
             if (textbox_result.Text == "0" || b_op || b_equal)
-            {
-                textbox_result.Clear();
+            {   // 결과박스에 0밖에 없을 때 or 진행박스의 마지막이 연산자일때 or 막 =를 이용하여 계산을 끝냈던 참일 때
+                textbox_result.Clear(); // 새로 입력
                 b_op = false;
                 b_equal = false;
             }
@@ -47,39 +46,50 @@ namespace practiceCalculator
 
         private void ClickOp(object sender, EventArgs e)
         {
-            if (operation != null)
-            {
-                switch (operation)
-                {
-                    case "+":
-                        value = function.Add(value, Double.Parse(textbox_result.Text));
-                        break;
-                    case "-":
-                        value = function.Sub(value, Double.Parse(textbox_result.Text));
-                        break;
-                    case "*":
-                        value = function.Mul(value, Double.Parse(textbox_result.Text));
-                        break;
-                    case "/":
-                        value = function.Div(value, Double.Parse(textbox_result.Text));
-                        break;
-                    case "%":
-                        value = function.Mod(value, Double.Parse(textbox_result.Text));
-                        break;
-                }
-                operation = null;
-            }
             Button b = (Button)sender;
-            operation = b.Text;
-            if (!b_cal_start)
+            if (b_op) // 연산자를 다시 입력했을 시 기존 연산자를 교체
             {
-                value = Double.Parse(textbox_result.Text);
-                b_cal_start = true;
+                String temp = textbox_process.Text;
+                temp = temp.Remove(temp.LastIndexOf(operation), 2);
+
+                operation = b.Text;
+
+                textbox_process.Text = temp + operation + " ";
             }
-            b_op = true;
-            b_equal = false;
-            textbox_process.Text += textbox_result.Text + " " + operation + " ";
-            textbox_result.Text = value.ToString();
+            else {
+                if (operation != null && !b_equal)  // 이미 연산자가 있을 경우 처리하여 결과박스를 갱신
+                {
+                    switch (operation)
+                    {
+                        case "+":
+                            value = function.Add(value, Double.Parse(textbox_result.Text));
+                            break;
+                        case "-":
+                            value = function.Sub(value, Double.Parse(textbox_result.Text));
+                            break;
+                        case "*":
+                            value = function.Mul(value, Double.Parse(textbox_result.Text));
+                            break;
+                        case "/":
+                            value = function.Div(value, Double.Parse(textbox_result.Text));
+                            break;
+                        case "%":
+                            value = function.Mod(value, Double.Parse(textbox_result.Text));
+                            break;
+                    }
+                    //operation = null;
+                }
+                else
+                    value = Double.Parse(textbox_result.Text);  // 결과박스의 값을 value에 그대로 입력(초기값)
+                if (!b_op)
+                {
+                    operation = b.Text;
+                    textbox_process.Text += textbox_result.Text + " " + operation + " ";
+                    textbox_result.Text = value.ToString();
+                    b_op = true;
+                    b_equal = false;
+                }
+            }
         }
 
         private void ClickReciprocal(object sender, EventArgs e)
@@ -87,7 +97,6 @@ namespace practiceCalculator
             textbox_process.Clear();
             textbox_result.Text = function.Rec(Double.Parse(textbox_result.Text)).ToString();
             b_equal = true;
-            b_cal_start = false;
         }
 
         private void ClickEqual(object sender, EventArgs e)
@@ -113,7 +122,6 @@ namespace practiceCalculator
             }
             textbox_result.Text = value.ToString();
             b_equal = true;
-            b_cal_start = false;
         }
 
         //장수진
