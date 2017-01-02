@@ -49,7 +49,9 @@
             this.textbox_process = new System.Windows.Forms.RichTextBox();
             this.textbox_result = new System.Windows.Forms.RichTextBox();
             this.textbox_history = new System.Windows.Forms.RichTextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.button_save = new System.Windows.Forms.Button();
+            this.button_up = new System.Windows.Forms.Button();
+            this.button_down = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // number_7
@@ -281,22 +283,46 @@
             this.textbox_history.Size = new System.Drawing.Size(219, 141);
             this.textbox_history.TabIndex = 21;
             this.textbox_history.Text = "";
+            this.textbox_history.Click += new System.EventHandler(this.textbox_history_Click);
+            this.textbox_history.DoubleClick += new System.EventHandler(this.textbox_history_DoubleClick);
             // 
-            // button1
+            // button_save
             // 
-            this.button1.Location = new System.Drawing.Point(15, 5);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(42, 20);
-            this.button1.TabIndex = 22;
-            this.button1.Text = "저장";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button_save.Location = new System.Drawing.Point(15, 5);
+            this.button_save.Name = "button_save";
+            this.button_save.Size = new System.Drawing.Size(42, 20);
+            this.button_save.TabIndex = 22;
+            this.button_save.Text = "저장";
+            this.button_save.UseVisualStyleBackColor = true;
+            // 
+            // button_up
+            // 
+            this.button_up.Location = new System.Drawing.Point(190, 5);
+            this.button_up.Name = "button_up";
+            this.button_up.Size = new System.Drawing.Size(21, 20);
+            this.button_up.TabIndex = 23;
+            this.button_up.Text = "▲";
+            this.button_up.UseVisualStyleBackColor = true;
+            this.button_up.Click += new System.EventHandler(this.button_up_Click);
+            // 
+            // button_down
+            // 
+            this.button_down.Location = new System.Drawing.Point(214, 5);
+            this.button_down.Name = "button_down";
+            this.button_down.Size = new System.Drawing.Size(21, 20);
+            this.button_down.TabIndex = 23;
+            this.button_down.Text = "▼";
+            this.button_down.UseVisualStyleBackColor = true;
+            this.button_down.Click += new System.EventHandler(this.button_down_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(250, 420);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.button_down);
+            this.Controls.Add(this.button_up);
+            this.Controls.Add(this.button_save);
             this.Controls.Add(this.textbox_history);
             this.Controls.Add(this.textbox_result);
             this.Controls.Add(this.textbox_process);
@@ -321,7 +347,6 @@
             this.KeyPreview = true;
             this.Name = "Form1";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PressKey);
             this.ResumeLayout(false);
 
@@ -350,7 +375,9 @@
         private System.Windows.Forms.RichTextBox textbox_process;
         private System.Windows.Forms.RichTextBox textbox_result;
         private System.Windows.Forms.RichTextBox textbox_history;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button_save;
+        private System.Windows.Forms.Button button_up;
+        private System.Windows.Forms.Button button_down;
     }
 }
 

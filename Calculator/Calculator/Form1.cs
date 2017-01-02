@@ -188,10 +188,26 @@ namespace practiceCalculator
             }
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void textbox_history_Click(object sender, EventArgs e)
         {
 
         }
+
+        private void textbox_history_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button_up_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button_down_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 
 
