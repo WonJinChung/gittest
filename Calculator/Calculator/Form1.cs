@@ -16,8 +16,6 @@ namespace practiceCalculator
 {
     public partial class Form1 : Form
     {
-        // private double[] stack = new double[10];    // infix stack 연산용 저장공간 생각중
-        // System.Windows.Forms.RichTextBox textbox_current;   // 맨 위의 stack
 
         String operation = null;    // 연산자 기호
         bool b_op = false;  // 현재 식에 연산자가 하나라도 있는지 확인
@@ -188,6 +186,11 @@ namespace practiceCalculator
                     button_add.PerformClick();
                     break;
             }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 
