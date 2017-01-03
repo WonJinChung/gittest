@@ -75,7 +75,6 @@ namespace practiceCalculator
                             value = function.Mod(value, Double.Parse(textbox_result.Text));
                             break;
                     }
-                    //operation = null;
                 }
                 else
                     value = Double.Parse(textbox_result.Text);  // 결과박스의 값을 value에 그대로 입력(초기값)
@@ -100,25 +99,32 @@ namespace practiceCalculator
         private void ClickEqual(object sender, EventArgs e)
         {
             textbox_process.Clear();
-            switch (operation)
-            {
-                case "+":
-                    value = function.Add(value, Double.Parse(textbox_result.Text));
-                    break;
-                case "-":
-                    value = function.Sub(value, Double.Parse(textbox_result.Text));
-                    break;
-                case "*":
-                    value = function.Mul(value, Double.Parse(textbox_result.Text));
-                    break;
-                case "/":
-                    value = function.Div(value, Double.Parse(textbox_result.Text));
-                    break;
-                case "%":
-                    value = function.Mod(value, Double.Parse(textbox_result.Text));
-                    break;
+            if (operation == null){
+                value = Double.Parse(textbox_result.Text);
             }
-            textbox_result.Text = value.ToString();
+            else
+            {
+                switch (operation)
+                {
+                    case "+":
+                        value = function.Add(value, Double.Parse(textbox_result.Text));
+                        break;
+                    case "-":
+                        value = function.Sub(value, Double.Parse(textbox_result.Text));
+                        break;
+                    case "*":
+                        value = function.Mul(value, Double.Parse(textbox_result.Text));
+                        break;
+                    case "/":
+                        value = function.Div(value, Double.Parse(textbox_result.Text));
+                        break;
+                    case "%":
+                        value = function.Mod(value, Double.Parse(textbox_result.Text));
+                        break;
+                }
+                operation = null;
+                textbox_result.Text = value.ToString();
+            }
             b_equal = true;
         }
 
