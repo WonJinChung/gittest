@@ -20,6 +20,7 @@ namespace practiceCalculator
         String operation = null;    // 연산자 기호
         bool b_op = false;  // 현재 식에 연산자가 하나라도 있는지 확인
         bool b_equal = false;   // 마지막 연산이 =였는지 확인
+        bool b_history = false; // 히스토리 기록 접근 시 또 다시 히스토리에 기록을 생성하는 것을 방지
         Double value = 0;
         
         public Form1()
@@ -92,6 +93,7 @@ namespace practiceCalculator
         private void ClickReciprocal(object sender, EventArgs e)
         {
             textbox_process.Clear();
+            listbox_history.Items.Add("1/("+textbox_result.Text+")");
             textbox_result.Text = function.Rec(Double.Parse(textbox_result.Text)).ToString();
             b_equal = true;
         }
@@ -99,12 +101,12 @@ namespace practiceCalculator
         private void ClickEqual(object sender, EventArgs e)
         {
             if (operation == null){
-                listbox_history.Items.Add(textbox_result.Text);
+                if (!b_history) listbox_history.Items.Add(textbox_result.Text);
                 value = Double.Parse(textbox_result.Text);
             }
             else
             {
-                listbox_history.Items.Add(textbox_process.Text + textbox_result.Text);
+                if (!b_history) listbox_history.Items.Add(textbox_process.Text + textbox_result.Text);
                 switch (operation)
                 {
                     case "+":
@@ -127,7 +129,9 @@ namespace practiceCalculator
                 textbox_result.Text = value.ToString();
                 textbox_process.Clear();
             }
+            b_op = false;
             b_equal = true;
+            b_history = false;
         }
 
         //장수진
@@ -219,6 +223,81 @@ namespace practiceCalculator
             {
                 // nothing
             }
+        }
+
+        private void listbox_history_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listbox_history_Click(object sender, EventArgs e)
+        {
+            textbox_result.Clear();
+            value = 0;
+            b_history = true;
+            String temp = listbox_history.SelectedItem.ToString();
+            for (int i = 0, len = temp.Length; i < len; i++)
+            {
+                if (temp.Length>=5 && temp.Substring(0, 3) == "1/(")
+                {
+
+                }
+                else switch (temp[i].ToString())
+                    {
+                        case "0":
+                            number_0.PerformClick();
+                            break;
+                        case "1":
+                            number_1.PerformClick();
+                            break;
+                        case "2":
+                            number_2.PerformClick();
+                            break;
+                        case "3":
+                            number_3.PerformClick();
+                            break;
+                        case "4":
+                            number_4.PerformClick();
+                            break;
+                        case "5":
+                            number_5.PerformClick();
+                            break;
+                        case "6":
+                            number_6.PerformClick();
+                            break;
+                        case "7":
+                            number_7.PerformClick();
+                            break;
+                        case "8":
+                            number_8.PerformClick();
+                            break;
+                        case "9":
+                            number_9.PerformClick();
+                            break;
+                        case "+":
+                            button_add.PerformClick();
+                            break;
+                        case "-":
+                            button_sub.PerformClick();
+                            break;
+                        case "*":
+                            button_mul.PerformClick();
+                            break;
+                        case "/":
+                            button_div.PerformClick();
+                            break;
+                        case "%":
+                            button_mod.PerformClick();
+                            break;
+                        case ".":
+                            button_point.PerformClick();
+                            break;
+                        case " ":
+                        default:
+                            break;
+                    }
+            }
+            button_equ.PerformClick();
         }
     }
 

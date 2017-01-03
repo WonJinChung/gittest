@@ -314,6 +314,8 @@
             this.listbox_history.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.listbox_history.Size = new System.Drawing.Size(219, 136);
             this.listbox_history.TabIndex = 24;
+            this.listbox_history.Click += new System.EventHandler(this.listbox_history_Click);
+            this.listbox_history.DoubleClick += new System.EventHandler(this.listbox_history_DoubleClick);
             // 
             // Form1
             // 
