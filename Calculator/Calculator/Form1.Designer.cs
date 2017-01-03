@@ -51,7 +51,7 @@
             this.button_save = new System.Windows.Forms.Button();
             this.button_up = new System.Windows.Forms.Button();
             this.button_down = new System.Windows.Forms.Button();
-            this.list_history = new System.Windows.Forms.ListBox();
+            this.listbox_history = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // number_7
@@ -303,21 +303,21 @@
             this.button_down.UseVisualStyleBackColor = true;
             this.button_down.Click += new System.EventHandler(this.button_down_Click);
             // 
-            // list_history
+            // listbox_history
             // 
-            this.list_history.FormattingEnabled = true;
-            this.list_history.ItemHeight = 12;
-            this.list_history.Location = new System.Drawing.Point(15, 32);
-            this.list_history.Name = "list_history";
-            this.list_history.Size = new System.Drawing.Size(219, 136);
-            this.list_history.TabIndex = 24;
+            this.listbox_history.FormattingEnabled = true;
+            this.listbox_history.ItemHeight = 12;
+            this.listbox_history.Location = new System.Drawing.Point(15, 32);
+            this.listbox_history.Name = "listbox_history";
+            this.listbox_history.Size = new System.Drawing.Size(219, 136);
+            this.listbox_history.TabIndex = 24;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(250, 420);
-            this.Controls.Add(this.list_history);
+            this.Controls.Add(this.listbox_history);
             this.Controls.Add(this.button_down);
             this.Controls.Add(this.button_up);
             this.Controls.Add(this.button_save);
@@ -374,7 +374,7 @@
         private System.Windows.Forms.Button button_save;
         private System.Windows.Forms.Button button_up;
         private System.Windows.Forms.Button button_down;
-        private System.Windows.Forms.ListBox list_history;
+        private System.Windows.Forms.ListBox listbox_history;
     }
 }
 

@@ -98,12 +98,13 @@ namespace practiceCalculator
 
         private void ClickEqual(object sender, EventArgs e)
         {
-            textbox_process.Clear();
             if (operation == null){
+                listbox_history.Items.Add(textbox_result.Text);
                 value = Double.Parse(textbox_result.Text);
             }
             else
             {
+                listbox_history.Items.Add(textbox_process.Text + textbox_result.Text);
                 switch (operation)
                 {
                     case "+":
@@ -124,6 +125,7 @@ namespace practiceCalculator
                 }
                 operation = null;
                 textbox_result.Text = value.ToString();
+                textbox_process.Clear();
             }
             b_equal = true;
         }
