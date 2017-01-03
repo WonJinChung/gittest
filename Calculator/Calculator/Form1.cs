@@ -7,6 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+// 김효상
+// 2017/1/4
+// 저장 위한 IO 삽입
+using System.IO;
 /// <summary>
 // 김효상
 // 2016/12/22
@@ -330,6 +334,97 @@ namespace practiceCalculator
             if (listbox_history.SelectedIndex == -1)
                 return;
             listbox_history.Items.RemoveAt(listbox_history.SelectedIndex);
+        }
+
+        // 김효상
+        // 2017/1/4
+        // 저장 기능 구현
+        private void save_data(object sender, EventArgs e)
+        {
+            SaveFileDialog save_dialog = new SaveFileDialog(); //윈도우에서 사용하는 저장 다이얼로그 생성
+            save_dialog.Title = "저장"; // 다이얼로그 제목
+            save_dialog.Filter = "Text File (*.txt)|*.txt"; //파일 확장자 필터
+           
+            if (save_dialog.ShowDialog()==DialogResult.OK)
+            {
+                FileStream file = new FileStream(save_dialog.FileName, FileMode.Create);
+                StreamWriter writer = new StreamWriter(file,Encoding.Default);
+                for(int i = 0;i<listbox_history.Items.Count;i++)
+                {
+                    textbox_result.Clear();
+                    b_history = true;
+                    String temp = listbox_history.Items[i].ToString();
+                    for (int j = 0, len = temp.Length; j < len; j++)
+                    {
+                        if (temp.Length >= 5 && temp.Substring(0, 3) == "1/(")
+                        {
+
+                        }
+                        else switch (temp[j].ToString())
+                            {
+                                case "0":
+                                    number_0.PerformClick();
+                                    break;
+                                case "1":
+                                    number_1.PerformClick();
+                                    break;
+                                case "2":
+                                    number_2.PerformClick();
+                                    break;
+                                case "3":
+                                    number_3.PerformClick();
+                                    break;
+                                case "4":
+                                    number_4.PerformClick();
+                                    break;
+                                case "5":
+                                    number_5.PerformClick();
+                                    break;
+                                case "6":
+                                    number_6.PerformClick();
+                                    break;
+                                case "7":
+                                    number_7.PerformClick();
+                                    break;
+                                case "8":
+                                    number_8.PerformClick();
+                                    break;
+                                case "9":
+                                    number_9.PerformClick();
+                                    break;
+                                case "+":
+                                    button_add.PerformClick();
+                                    break;
+                                case "-":
+                                    button_sub.PerformClick();
+                                    break;
+                                case "*":
+                                    button_mul.PerformClick();
+                                    break;
+                                case "/":
+                                    button_div.PerformClick();
+                                    break;
+                                case "%":
+                                    button_mod.PerformClick();
+                                    break;
+                                case ".":
+                                    button_point.PerformClick();
+                                    break;
+                                case " ":
+                                default:
+                                    break;
+                            }
+                    }
+                    
+                    button_equ.PerformClick();
+
+                    writer.WriteLine(listbox_history.Items[i].ToString()+" = "+ textbox_result.Text);//리스트에 저장되어있는 목록 전부 저장 
+                }
+                writer.Close();
+                file.Close();
+                b_history = false;
+            }
+
         }
     }
 
