@@ -235,6 +235,11 @@ namespace practiceCalculator
             textbox_result.Clear();
             value = 0;
             b_history = true;
+            // 작성자 : 전수영
+            // 2017/1/3
+            // 아무것도 선택 안되었을 때의 예외 처리
+            if (listbox_history.SelectedIndex == -1)
+                return;
             String temp = listbox_history.SelectedItem.ToString();
             for (int i = 0, len = temp.Length; i < len; i++)
             {
@@ -298,6 +303,33 @@ namespace practiceCalculator
                     }
             }
             button_equ.PerformClick();
+        }
+
+        // 전수영
+        // 2017/1/3
+        // History Click events 생성
+
+        private void contextmenu_copyclick(object sender, EventArgs e)
+        {
+            if (listbox_history.SelectedIndex == -1)
+                return;
+
+            Clipboard.SetText(textbox_result.Text);
+        }
+
+        private void contextmenu_pasteclick(object sender, EventArgs e)
+        {
+            if (Clipboard.GetText() == null)
+                return;
+
+            Clipboard.GetText();
+        }
+
+        private void contextmenu_deleteclick(object sender, EventArgs e)
+        {
+            if (listbox_history.SelectedIndex == -1)
+                return;
+            listbox_history.Items.RemoveAt(listbox_history.SelectedIndex);
         }
     }
 
