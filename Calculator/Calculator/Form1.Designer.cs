@@ -239,7 +239,7 @@
             this.button_point.TabIndex = 16;
             this.button_point.Text = ".";
             this.button_point.UseVisualStyleBackColor = true;
-            this.button_point.Click += new System.EventHandler(this.ClickOp);
+            this.button_point.Click += new System.EventHandler(this.ClickNum);
             // 
             // button_add
             // 
@@ -305,10 +305,13 @@
             // 
             // listbox_history
             // 
+            this.listbox_history.BackColor = System.Drawing.SystemColors.Control;
+            this.listbox_history.Cursor = System.Windows.Forms.Cursors.Default;
             this.listbox_history.FormattingEnabled = true;
             this.listbox_history.ItemHeight = 12;
             this.listbox_history.Location = new System.Drawing.Point(15, 32);
             this.listbox_history.Name = "listbox_history";
+            this.listbox_history.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.listbox_history.Size = new System.Drawing.Size(219, 136);
             this.listbox_history.TabIndex = 24;
             // 
