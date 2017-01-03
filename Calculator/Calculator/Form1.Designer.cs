@@ -48,10 +48,10 @@
             this.button_add = new System.Windows.Forms.Button();
             this.textbox_process = new System.Windows.Forms.RichTextBox();
             this.textbox_result = new System.Windows.Forms.RichTextBox();
-            this.textbox_history = new System.Windows.Forms.RichTextBox();
             this.button_save = new System.Windows.Forms.Button();
             this.button_up = new System.Windows.Forms.Button();
             this.button_down = new System.Windows.Forms.Button();
+            this.list_history = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // number_7
@@ -274,18 +274,6 @@
             this.textbox_result.TabIndex = 19;
             this.textbox_result.Text = "0";
             // 
-            // textbox_history
-            // 
-            this.textbox_history.Location = new System.Drawing.Point(16, 29);
-            this.textbox_history.Name = "textbox_history";
-            this.textbox_history.ReadOnly = true;
-            this.textbox_history.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.textbox_history.Size = new System.Drawing.Size(219, 141);
-            this.textbox_history.TabIndex = 21;
-            this.textbox_history.Text = "";
-            this.textbox_history.Click += new System.EventHandler(this.textbox_history_Click);
-            this.textbox_history.DoubleClick += new System.EventHandler(this.textbox_history_DoubleClick);
-            // 
             // button_save
             // 
             this.button_save.Location = new System.Drawing.Point(15, 5);
@@ -315,15 +303,24 @@
             this.button_down.UseVisualStyleBackColor = true;
             this.button_down.Click += new System.EventHandler(this.button_down_Click);
             // 
+            // list_history
+            // 
+            this.list_history.FormattingEnabled = true;
+            this.list_history.ItemHeight = 12;
+            this.list_history.Location = new System.Drawing.Point(15, 32);
+            this.list_history.Name = "list_history";
+            this.list_history.Size = new System.Drawing.Size(219, 136);
+            this.list_history.TabIndex = 24;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(250, 420);
+            this.Controls.Add(this.list_history);
             this.Controls.Add(this.button_down);
             this.Controls.Add(this.button_up);
             this.Controls.Add(this.button_save);
-            this.Controls.Add(this.textbox_history);
             this.Controls.Add(this.textbox_result);
             this.Controls.Add(this.textbox_process);
             this.Controls.Add(this.button_add);
@@ -374,10 +371,10 @@
         private System.Windows.Forms.Button button_add;
         private System.Windows.Forms.RichTextBox textbox_process;
         private System.Windows.Forms.RichTextBox textbox_result;
-        private System.Windows.Forms.RichTextBox textbox_history;
         private System.Windows.Forms.Button button_save;
         private System.Windows.Forms.Button button_up;
         private System.Windows.Forms.Button button_down;
+        private System.Windows.Forms.ListBox list_history;
     }
 }
 
