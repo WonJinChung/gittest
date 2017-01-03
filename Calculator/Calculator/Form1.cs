@@ -16,104 +16,240 @@ namespace practiceCalculator
 {
     public partial class Form1 : Form
     {
+
+        String operation = null;    // 연산자 기호
+        bool b_op = false;  // 현재 식에 연산자가 하나라도 있는지 확인
+        bool b_equal = false;   // 마지막 연산이 =였는지 확인
+        Double value = 0;
+        
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void number_1_Click(object sender, EventArgs e)
+        // 장수진
+        // 2016/12/22
+        // 숫자는 숫자끼리 연산자는 연산자끼리 묶어 처리하고자 합니다. (연산에 숫자를 두 개 밖에 이용할 수 없는 부분 수정필요)
+        private void ClickNum(object sender, EventArgs e)
         {
-
+            Button b = (Button)sender;
+            if (textbox_result.Text == "0" || b_op || b_equal)
+            {   // 결과박스에 0밖에 없을 때 or 진행박스의 마지막이 연산자일때 or 막 =를 이용하여 계산을 끝냈던 참일 때
+                textbox_result.Clear(); // 새로 입력
+                b_op = false;
+                b_equal = false;
+            }
+            textbox_result.Text += b.Text;
         }
 
-        private void number_2_Click(object sender, EventArgs e)
+        private void ClickOp(object sender, EventArgs e)
         {
+            Button b = (Button)sender;
+            if (b_op) // 연산자를 다시 입력했을 시 기존 연산자를 교체
+            {
+                String temp = textbox_process.Text;
+                temp = temp.Remove(temp.LastIndexOf(operation), 2);
 
+                operation = b.Text;
+
+                textbox_process.Text = temp + operation + " ";
+            }
+            else {
+                if (operation != null && !b_equal)  // 이미 연산자가 있을 경우 처리하여 결과박스를 갱신
+                {
+                    switch (operation)
+                    {
+                        case "+":
+                            value = function.Add(value, Double.Parse(textbox_result.Text));
+                            break;
+                        case "-":
+                            value = function.Sub(value, Double.Parse(textbox_result.Text));
+                            break;
+                        case "*":
+                            value = function.Mul(value, Double.Parse(textbox_result.Text));
+                            break;
+                        case "/":
+                            value = function.Div(value, Double.Parse(textbox_result.Text));
+                            break;
+                        case "%":
+                            value = function.Mod(value, Double.Parse(textbox_result.Text));
+                            break;
+                    }
+                }
+                else
+                    value = Double.Parse(textbox_result.Text);  // 결과박스의 값을 value에 그대로 입력(초기값)
+                if (!b_op)
+                {
+                    operation = b.Text;
+                    textbox_process.Text += textbox_result.Text + " " + operation + " ";
+                    textbox_result.Text = value.ToString();
+                    b_op = true;
+                    b_equal = false;
+                }
+            }
         }
 
-        private void number_3_Click(object sender, EventArgs e)
+        private void ClickReciprocal(object sender, EventArgs e)
         {
-
+            textbox_process.Clear();
+            textbox_result.Text = function.Rec(Double.Parse(textbox_result.Text)).ToString();
+            b_equal = true;
         }
 
-        private void number_4_Click(object sender, EventArgs e)
+        private void ClickEqual(object sender, EventArgs e)
         {
-
+            if (operation == null){
+                listbox_history.Items.Add(textbox_result.Text);
+                value = Double.Parse(textbox_result.Text);
+            }
+            else
+            {
+                listbox_history.Items.Add(textbox_process.Text + textbox_result.Text);
+                switch (operation)
+                {
+                    case "+":
+                        value = function.Add(value, Double.Parse(textbox_result.Text));
+                        break;
+                    case "-":
+                        value = function.Sub(value, Double.Parse(textbox_result.Text));
+                        break;
+                    case "*":
+                        value = function.Mul(value, Double.Parse(textbox_result.Text));
+                        break;
+                    case "/":
+                        value = function.Div(value, Double.Parse(textbox_result.Text));
+                        break;
+                    case "%":
+                        value = function.Mod(value, Double.Parse(textbox_result.Text));
+                        break;
+                }
+                operation = null;
+                textbox_result.Text = value.ToString();
+                textbox_process.Clear();
+            }
+            b_equal = true;
         }
 
-        private void number_5_Click(object sender, EventArgs e)
+        //장수진
+        // 2016/12/22
+        //키가 입력되면 키버튼에 대응하는 클릭 이벤트가 실행됩니다.
+        private void PressKey(object sender, KeyPressEventArgs e)
         {
-
+            if (e.KeyChar == (char)Keys.Return||e.KeyChar.ToString()=="=")
+            {
+                button_equ.PerformClick();
+            }
+            else switch (e.KeyChar.ToString())
+            {
+               
+                case "0":
+                    number_0.PerformClick();
+                    break;
+                case "1":
+                    number_1.PerformClick();
+                    break;
+                case "2":
+                    number_2.PerformClick();
+                    break;
+                case "3":
+                    number_3.PerformClick();
+                    break;
+                case "4":
+                    number_4.PerformClick();
+                    break;
+                case "5":
+                    number_5.PerformClick();
+                    break;
+                case "6":
+                    number_6.PerformClick();
+                    break;
+                case "7":
+                    number_7.PerformClick();
+                    break;
+                case "8":
+                    number_8.PerformClick();
+                    break;
+                case "9":
+                    number_9.PerformClick();
+                    break;
+                case "/":
+                    button_div.PerformClick();
+                    break;
+                case "*":
+                    button_mul.PerformClick();
+                    break;
+                case "-":
+                    button_sub.PerformClick();
+                    break;
+                case "%":
+                    button_mod.PerformClick();
+                    break;
+                case "r":
+                    button_rev.PerformClick();
+                    break;
+                case ".":
+                     button_point.PerformClick();
+                    break;
+                case "+":
+                    button_add.PerformClick();
+                    break;
+            }
         }
 
-        private void number_6_Click(object sender, EventArgs e)
+        //장수진
+        // 2016/1/3
+        // 위아래 화살표 버튼이벤트
+        private void button_up_Click(object sender, EventArgs e)
         {
-
+            try {
+                listbox_history.SelectedIndex--;
+            }
+            catch (System.ArgumentOutOfRangeException)
+            {
+                // nothing
+            }
         }
-
-        private void number_7_Click(object sender, EventArgs e)
+        private void button_down_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void number_8_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void number_9_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button_sub_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button_mul_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button_div_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button_mod_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button_rev_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button_equ_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button_add_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button_point_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void number_0_Click(object sender, EventArgs e)
-        {
-
+            try
+            {
+                listbox_history.SelectedIndex++;
+            }
+            catch (System.ArgumentOutOfRangeException)
+            {
+                // nothing
+            }
         }
     }
 
-    public class function
+
+
+
+    public static class function
     {
-      
+        public static double Add(double a, double b)
+        {
+            return a + b;
+        }
+        public static double Sub(double a, double b)
+        {
+            return a - b;
+        }
+        public static double Mul(double a, double b)
+        {
+            return a * b;
+        }
+        public static double Div(double a, double b)
+        {
+            return a / b;
+        }
+        public static double Mod(double a, double b)
+        {
+            return a % b;
+        }
+        public static double Rec(double x)
+        {
+            return 1/x;
+        }
     }
 }
