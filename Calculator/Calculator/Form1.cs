@@ -196,26 +196,30 @@ namespace practiceCalculator
             }
         }
 
-        private void textbox_history_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textbox_history_DoubleClick(object sender, EventArgs e)
-        {
-
-        }
-
+        //장수진
+        // 2016/1/3
+        // 위아래 화살표 버튼이벤트
         private void button_up_Click(object sender, EventArgs e)
         {
-
+            try {
+                listbox_history.SelectedIndex--;
+            }
+            catch (System.ArgumentOutOfRangeException)
+            {
+                // nothing
+            }
         }
-
         private void button_down_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                listbox_history.SelectedIndex++;
+            }
+            catch (System.ArgumentOutOfRangeException)
+            {
+                // nothing
+            }
         }
-
     }
 
 
