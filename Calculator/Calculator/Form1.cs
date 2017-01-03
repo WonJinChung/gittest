@@ -75,7 +75,6 @@ namespace practiceCalculator
                             value = function.Mod(value, Double.Parse(textbox_result.Text));
                             break;
                     }
-                    //operation = null;
                 }
                 else
                     value = Double.Parse(textbox_result.Text);  // 결과박스의 값을 value에 그대로 입력(초기값)
@@ -99,26 +98,35 @@ namespace practiceCalculator
 
         private void ClickEqual(object sender, EventArgs e)
         {
-            textbox_process.Clear();
-            switch (operation)
-            {
-                case "+":
-                    value = function.Add(value, Double.Parse(textbox_result.Text));
-                    break;
-                case "-":
-                    value = function.Sub(value, Double.Parse(textbox_result.Text));
-                    break;
-                case "*":
-                    value = function.Mul(value, Double.Parse(textbox_result.Text));
-                    break;
-                case "/":
-                    value = function.Div(value, Double.Parse(textbox_result.Text));
-                    break;
-                case "%":
-                    value = function.Mod(value, Double.Parse(textbox_result.Text));
-                    break;
+            if (operation == null){
+                listbox_history.Items.Add(textbox_result.Text);
+                value = Double.Parse(textbox_result.Text);
             }
-            textbox_result.Text = value.ToString();
+            else
+            {
+                listbox_history.Items.Add(textbox_process.Text + textbox_result.Text);
+                switch (operation)
+                {
+                    case "+":
+                        value = function.Add(value, Double.Parse(textbox_result.Text));
+                        break;
+                    case "-":
+                        value = function.Sub(value, Double.Parse(textbox_result.Text));
+                        break;
+                    case "*":
+                        value = function.Mul(value, Double.Parse(textbox_result.Text));
+                        break;
+                    case "/":
+                        value = function.Div(value, Double.Parse(textbox_result.Text));
+                        break;
+                    case "%":
+                        value = function.Mod(value, Double.Parse(textbox_result.Text));
+                        break;
+                }
+                operation = null;
+                textbox_result.Text = value.ToString();
+                textbox_process.Clear();
+            }
             b_equal = true;
         }
 
@@ -188,9 +196,29 @@ namespace practiceCalculator
             }
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        //장수진
+        // 2016/1/3
+        // 위아래 화살표 버튼이벤트
+        private void button_up_Click(object sender, EventArgs e)
         {
-
+            try {
+                listbox_history.SelectedIndex--;
+            }
+            catch (System.ArgumentOutOfRangeException)
+            {
+                // nothing
+            }
+        }
+        private void button_down_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                listbox_history.SelectedIndex++;
+            }
+            catch (System.ArgumentOutOfRangeException)
+            {
+                // nothing
+            }
         }
     }
 
