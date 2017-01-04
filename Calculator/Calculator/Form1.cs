@@ -211,6 +211,7 @@ namespace practiceCalculator
         {
             try {
                 listbox_history.SelectedIndex--;
+                listbox_history_Click(sender, e);
             }
             catch (System.ArgumentOutOfRangeException)
             {
@@ -222,6 +223,7 @@ namespace practiceCalculator
             try
             {
                 listbox_history.SelectedIndex++;
+                listbox_history_Click(sender, e);
             }
             catch (System.ArgumentOutOfRangeException)
             {
